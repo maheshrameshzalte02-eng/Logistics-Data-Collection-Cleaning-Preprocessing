@@ -1,61 +1,40 @@
-# 🚚 Logistics Data Collection, Cleaning & Preprocessing
+# Logistics Data Collection, Cleaning & Preprocessing
 
-## 📌 Project Overview
+Python-based data preprocessing and quality assessment on the **DataCo SMART Supply Chain dataset** — covering data cleaning, missing-value treatment, duplicate removal, date processing, outlier detection, feature engineering, normalization, and standardization for logistics analysis.
 
-This project focuses on **data collection, cleaning, and preprocessing for logistics analysis** using Python.
+## Overview
 
-The project uses the **DataCo SMART Supply Chain Dataset** to simulate a real-world logistics data preprocessing pipeline. The main goal is to transform raw supply-chain data into a clean, consistent, and analysis-ready dataset.
+This project focuses on preparing logistics and supply chain data for reliable analysis by applying a structured data preprocessing pipeline. The workflow uses Python, Pandas, NumPy, Matplotlib, Seaborn, and Scikit-learn to transform raw logistics data into a clean and analysis-ready dataset.
 
-The preprocessing workflow includes:
+The analysis begins with data collection and initial inspection, followed by validation of data types, missing values, and duplicate records. Missing numerical and categorical values are handled using appropriate statistical techniques, while duplicate records are removed to improve data consistency.
 
-* Data collection and loading
-* Dataset inspection
-* Data quality assessment
-* Missing value handling
-* Duplicate removal
-* Date conversion
-* Feature engineering
-* Outlier detection
-* Min-Max normalization
-* Standardization
-* Data validation
-* Export of the processed dataset
+Logistics-specific preprocessing is also performed by converting order and shipping dates into datetime format and creating a `Delivery_Delay` feature based on actual versus scheduled shipping duration.
 
----
+Potential outliers are identified using the **Interquartile Range (IQR)** method. Rather than automatically deleting extreme values, they are reviewed because unusually large orders, shipping quantities, costs, or delivery times may represent genuine logistics events.
 
-## 🎯 Objectives
+Finally, selected numerical variables are transformed using **Min-Max Normalization** and **Standardization**, producing a dataset suitable for further exploratory analysis and machine learning.
 
-The main objectives of this project are:
+## Key Results
 
-1. Collect and load a publicly available logistics dataset.
-2. Understand the structure and characteristics of the raw data.
-3. Identify common data-quality issues.
-4. Handle missing values appropriately.
-5. Remove duplicate records.
-6. Convert date columns into appropriate datetime format.
-7. Detect potential outliers using the IQR method.
-8. Create logistics-related features.
-9. Apply normalization and standardization techniques.
-10. Produce a clean dataset suitable for further analytics and machine learning.
+* Raw logistics data was inspected for **missing values, duplicate records, data types, and statistical inconsistencies**
+* Missing numerical values were handled using **median imputation**
+* Missing categorical values were handled using **mode imputation**
+* Complete duplicate records were removed during preprocessing
+* Order and shipping date fields were converted into proper **datetime format**
+* A new `Delivery_Delay` feature was created using actual and scheduled shipping duration
+* Delivery records were classified as **Late, On Time, or Early**
+* Potential outliers were detected using the **IQR method**
+* Selected numerical variables were transformed using **Min-Max Normalization**
+* Standardized versions of selected numerical variables were created using **StandardScaler**
+* The final dataset was validated and exported as a preprocessed CSV file
 
----
+## Dataset
 
-## 📊 Dataset
+This project uses the **DataCo SMART Supply Chain for Big Data Analysis** dataset, publicly available on Mendeley Data.
 
-### DataCo SMART Supply Chain Dataset
+**Dataset:** [Mendeley Data — DataCo SMART Supply Chain Dataset](https://data.mendeley.com/datasets/8gx2fvg2k6/5)
 
-The project uses the **DataCo SMART Supply Chain Dataset**, which contains supply-chain and logistics-related information such as:
-
-* Orders
-* Customers
-* Products
-* Sales
-* Shipping
-* Delivery information
-* Order quantities
-* Shipping costs
-* Delivery duration
-* Market and regional information
+The dataset contains logistics and supply chain information related to orders, products, customers, sales, shipping, delivery, quantities, markets, and regions.
 
 ### Dataset File
 
@@ -63,391 +42,167 @@ The project uses the **DataCo SMART Supply Chain Dataset**, which contains suppl
 DataCoSupplyChainDataset.csv
 ```
 
-The dataset is used as the raw input for the preprocessing pipeline.
+The raw CSV is **not included in this repository if it exceeds GitHub's file-size limit**. To reproduce the project, download the dataset from the Mendeley link above and place it in the `data/` folder.
 
----
+## Tech Stack
 
-## 🛠️ Technologies Used
+* **Python** — Pandas, NumPy
+* **Data Visualization** — Matplotlib, Seaborn
+* **Data Transformation** — Scikit-learn
+* **Development** — Jupyter Notebook, VS Code
 
-| Technology       | Purpose                             |
-| ---------------- | ----------------------------------- |
-| Python           | Data preprocessing and analysis     |
-| Pandas           | Data loading and cleaning           |
-| NumPy            | Numerical operations                |
-| Matplotlib       | Data visualization                  |
-| Seaborn          | Statistical visualization           |
-| Scikit-learn     | Normalization and standardization   |
-| Jupyter Notebook | Interactive development             |
-| VS Code          | Development environment             |
-| GitHub           | Version control and project sharing |
-
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```text
-Logistics_Data_Analysis/
+Logistics-Data-Preprocessing/
 │
 ├── data/
-│   ├── DataCoSupplyChainDataset.csv
-│   └── DataCoSupplyChain_Preprocessed.csv
+│   └── DataCoSupplyChainDataset.csv
+│       # Raw dataset — not included if too large
 │
 ├── Logistics_Week2_Preprocessing.ipynb
+│   └── Complete preprocessing workflow
+│
+├── DataCoSupplyChain_Preprocessed.csv
+│   └── Cleaned and transformed dataset
 │
 ├── Week_2_Logistics_Data_Preprocessing_Report.docx
+│   └── Detailed preprocessing report
 │
 └── README.md
+    └── Project documentation
 ```
 
-> The raw dataset can be kept locally and the preprocessed dataset can be generated by running the notebook.
+## How to Run
 
----
+```bash
+# Clone the repository
+git clone https://github.com/<your-username>/Logistics-Data-Preprocessing.git
 
-# 🔄 Data Preprocessing Pipeline
+# Enter the project directory
+cd Logistics-Data-Preprocessing
+
+# Install dependencies
+pip install pandas numpy matplotlib seaborn scikit-learn jupyter
+
+# Start Jupyter Notebook
+jupyter notebook
+```
+
+Download the dataset from:
+
+[DataCo SMART Supply Chain Dataset](https://data.mendeley.com/datasets/8gx2fvg2k6/5)
+
+Then place it here:
 
 ```text
-Raw Logistics Dataset
-        ↓
-Data Collection
-        ↓
-Data Inspection
-        ↓
-Data Quality Assessment
-        ↓
-Missing Value Handling
-        ↓
-Duplicate Removal
-        ↓
-Date Conversion
-        ↓
-Feature Engineering
-        ↓
-Outlier Detection
-        ↓
-Min-Max Normalization
-        ↓
-Standardization
-        ↓
-Final Validation
-        ↓
-Preprocessed Dataset
+data/DataCoSupplyChainDataset.csv
 ```
 
----
-
-# 🧹 Data Cleaning
-
-## 1. Missing Values
-
-Missing values are first identified using:
-
-```python
-df.isnull().sum()
-```
-
-Numerical columns are handled using the **median**, while categorical columns are handled using the **mode**.
-
-### Why?
-
-The median is less affected by extreme values compared with the mean, making it useful for numerical logistics data.
-
----
-
-## 2. Duplicate Records
-
-Duplicate records are identified using:
-
-```python
-df.duplicated().sum()
-```
-
-They are removed using:
-
-```python
-df = df.drop_duplicates()
-```
-
-### Why?
-
-Duplicate records can artificially increase the importance of particular transactions and distort analysis.
-
----
-
-## 3. Date Conversion
-
-The following logistics date fields are converted into datetime format:
+Open:
 
 ```text
-order date (DateOrders)
-shipping date (DateOrders)
+Logistics_Week2_Preprocessing.ipynb
 ```
 
-Python:
+and run the notebook cells.
 
-```python
-df[column] = pd.to_datetime(
-    df[column],
-    errors="coerce"
-)
-```
+## Methodology
 
-### Why?
+1. **Data Collection** — The DataCo SMART Supply Chain dataset is collected from the public Mendeley Data repository.
+2. **Initial Inspection** — Dataset shape, columns, data types, descriptive statistics, missing values, and duplicates are examined.
+3. **Data Cleaning** — Duplicate records are removed and missing values are handled according to variable type.
+4. **Missing Value Treatment** — Median imputation is used for numerical variables and mode imputation for categorical variables.
+5. **Date Processing** — Order and shipping date columns are converted to datetime format.
+6. **Feature Engineering** — `Delivery_Delay` is calculated by comparing actual and scheduled shipping duration.
+7. **Delivery Classification** — Delivery records are categorized as `Late`, `On Time`, or `Early`.
+8. **Outlier Detection** — The IQR method is applied to selected numerical and logistics variables.
+9. **Normalization** — Min-Max Scaling transforms selected numerical variables to a 0–1 range.
+10. **Standardization** — StandardScaler creates standardized versions of selected numerical variables.
+11. **Validation** — The final dataset is checked for remaining missing values, duplicates, dimensions, and data consistency.
+12. **Export** — The processed data is saved as `DataCoSupplyChain_Preprocessed.csv`.
 
-Datetime formatting allows reliable date calculations, sorting, filtering, and future time-series analysis.
+## Outlier Detection
 
----
-
-# 🚚 Feature Engineering
-
-A new feature called **Delivery_Delay** is created.
-
-```python
-df_clean["Delivery_Delay"] = (
-    df_clean["Days for shipping (real)"]
-    - df_clean["Days for shipment (scheduled)"]
-)
-```
-
-The result is classified into:
-
-```text
-Early
-On Time
-Late
-Unknown
-```
-
-Example:
-
-```python
-def classify_delivery(delay):
-
-    if pd.isna(delay):
-        return "Unknown"
-
-    elif delay > 0:
-        return "Late"
-
-    elif delay == 0:
-        return "On Time"
-
-    else:
-        return "Early"
-```
-
-This feature makes it easier to evaluate delivery performance in later logistics analysis.
-
----
-
-# 📦 Outlier Detection
-
-Potential outliers are detected using the **Interquartile Range (IQR)** method.
-
-The project checks variables such as:
-
-* Sales
-* Shipping Cost
-* Order Item Quantity
-* Actual Shipping Days
-* Scheduled Shipping Days
-* Delivery Delay
-
-The IQR is calculated as:
+The **Interquartile Range (IQR)** method is used to identify potential outliers.
 
 ```text
 IQR = Q3 - Q1
-```
 
-Outlier boundaries:
-
-```text
 Lower Bound = Q1 - 1.5 × IQR
 
 Upper Bound = Q3 + 1.5 × IQR
 ```
 
-Box plots are also generated using Seaborn.
+Outliers are identified rather than automatically removed because extreme logistics values can represent legitimate business events.
 
-### Outlier Treatment
+## Data Transformation
 
-Outliers are **not automatically deleted**.
-
-In logistics, an extreme value may represent a genuine business situation, such as:
-
-* High-value orders
-* Large order quantities
-* High shipping costs
-* Long-distance shipments
-* Unexpected delivery delays
-
-Therefore, the project identifies and reviews outliers instead of blindly removing them.
-
----
-
-# 📏 Normalization
-
-Min-Max normalization is applied using:
-
-```python
-from sklearn.preprocessing import MinMaxScaler
-
-scaler = MinMaxScaler()
-
-normalized_data = scaler.fit_transform(
-    df_clean[columns]
-)
-```
-
-The values are transformed to approximately:
+### Min-Max Normalization
 
 ```text
-0 to 1
+X' = (X - Xmin) / (Xmax - Xmin)
 ```
 
-### Purpose
+This scales selected numerical variables between 0 and 1.
 
-Normalization puts numerical variables on a comparable scale and can be useful for machine-learning algorithms.
-
----
-
-# 📐 Standardization
-
-Standardization is performed using:
+### Standardization
 
 ```python
 from sklearn.preprocessing import StandardScaler
 
 scaler = StandardScaler()
-
-standardized_data = scaler.fit_transform(
-    df_clean[columns]
-)
 ```
 
-Standardization transforms variables based on their mean and standard deviation.
+Standardization transforms variables toward a mean of 0 and standard deviation of 1.
 
-### Purpose
+## Output
 
-It is useful when algorithms are sensitive to differences in feature scales.
-
----
-
-# 🔍 Final Data Validation
-
-After preprocessing, the project checks:
-
-```python
-df_clean.isnull().sum().sum()
-```
-
-and:
-
-```python
-df_clean.duplicated().sum()
-```
-
-The workflow also compares the dataset before and after cleaning.
-
-Validation includes:
-
-* Number of rows
-* Number of columns
-* Missing values
-* Duplicate records
-* Data types
-* Newly created features
-* Normalized variables
-* Standardized variables
-
----
-
-# 📤 Output
-
-After preprocessing, the cleaned dataset is exported as:
+The preprocessing pipeline generates:
 
 ```text
 DataCoSupplyChain_Preprocessed.csv
 ```
 
-Python:
+The output contains the cleaned dataset along with engineered, normalized, and standardized features.
 
-```python
-df_clean.to_csv(
-    "DataCoSupplyChain_Preprocessed.csv",
-    index=False
-)
-```
+## Business Relevance
 
-The resulting file is ready for further:
+The processed dataset can be used for:
 
-* Exploratory Data Analysis
-* Visualization
-* Statistical analysis
-* Predictive modeling
-* Logistics performance analysis
-* Machine learning
+* Delivery performance analysis
+* Supply chain KPI development
+* Shipping and order analysis
+* Regional logistics analysis
+* Data-quality monitoring
+* Outlier investigation
+* Exploratory data analysis
+* Future predictive analytics
 
----
+Reliable preprocessing helps reduce the risk of misleading results caused by incomplete, duplicated, inconsistent, or improperly scaled data.
 
-# 📈 Key Learning Outcomes
+## Limitations
 
-Through this project, the following concepts were practically implemented:
+* The raw dataset may need to be downloaded separately because of GitHub's file-size restrictions.
+* Outliers are detected but not automatically removed because some extreme logistics observations may be legitimate.
+* `Delivery_Delay` uses actual shipping duration and is therefore intended for descriptive/preprocessing analysis rather than a pre-dispatch prediction feature.
+* For future machine-learning models, scaling should be fitted on training data only to avoid data leakage.
 
-* Data collection simulation
-* Data quality assessment
-* Missing-value handling
-* Duplicate removal
-* Datetime conversion
-* Feature engineering
-* IQR-based outlier detection
-* Data visualization
-* Min-Max normalization
-* Standardization
-* Data validation
-* Reproducible preprocessing workflow
+## Author
 
----
-
-# 💡 Business Relevance
-
-Clean logistics data is important for reliable decision-making.
-
-Poor-quality data can lead to:
-
-* Incorrect delivery-performance measurements
-* Misleading shipping-cost analysis
-* Incorrect operational reports
-* Biased machine-learning models
-* Poor resource allocation decisions
-
-A structured preprocessing pipeline helps create a reliable foundation for logistics analytics.
-
----
-
-# 📚 References
-
-* DataCo SMART Supply Chain Dataset
-* Python Pandas Documentation
-* NumPy Documentation
-* Scikit-learn Documentation
-* Matplotlib Documentation
-* Seaborn Documentation
-
----
-
-## 👨‍💻 Author
-
-**Mahesh Zalte**
+**Mahesh Zalte** — [LinkedIn](https://linkedin.com/in/mahesh-zalte-783091268)
 
 Bachelor of Computer Science Graduate | MCA Student
 
-### Skills Demonstrated
+### Skills
 
-`Python` `Pandas` `NumPy` `Data Cleaning` `EDA` `Data Preprocessing` `Scikit-learn` `Matplotlib` `Seaborn` `Jupyter Notebook` `VS Code`
+```text
+Python | SQL | Pandas | NumPy | Power BI | Excel
+Data Cleaning | Data Preprocessing | EDA
+Matplotlib | Seaborn | Scikit-learn
+Jupyter Notebook | VS Code
+```
 
----
+## Project Status
 
-## ⭐ Project Status
-
-**Completed – Week 2 Data Collection, Cleaning & Preprocessing Task**
-
+**Completed — Week 2: Data Collection, Cleaning & Preprocessing**
